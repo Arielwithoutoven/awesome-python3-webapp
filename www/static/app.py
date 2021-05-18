@@ -5,6 +5,7 @@ import os
 import time
 from datetime import datetime
 
+import aiomysql
 from aiohttp import web
 
 logging.basicConfig(level=logging.INFO)
