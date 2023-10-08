@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# 对象关系映射（使用 MySQL作为数据库）
 __author__ = "Michael Liao"
 
 import asyncio
@@ -182,7 +183,7 @@ class Model(dict, metaclass=ModelMetaclass):
 
     @classmethod
     async def findAll(cls, where=None, args=None, **kw):
-        " find objects by where clause. "
+        "find objects by where clause."
         sql = [cls.__select__]
         if where:
             sql.append("where")
@@ -209,7 +210,7 @@ class Model(dict, metaclass=ModelMetaclass):
 
     @classmethod
     async def findNumber(cls, selectField, where=None, args=None):
-        " find number by select and where. "
+        "find number by select and where."
         sql = ["select %s _num_ from `%s`" % (selectField, cls.__table__)]
         if where:
             sql.append("where")
@@ -221,7 +222,7 @@ class Model(dict, metaclass=ModelMetaclass):
 
     @classmethod
     async def find(cls, pk):
-        " find object by primary key. "
+        "find object by primary key."
         rs = await select(
             "%s where `%s`=?" % (cls.__select__, cls.__primary_key__), [pk], 1
         )
