@@ -1,5 +1,7 @@
 # Web App骨架
+import logging
 
+logging.basicConfig(level=logging.INFO)
 import asyncio
 import json
 import logging

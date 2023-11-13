@@ -14,7 +14,7 @@ def log(sql, args=()):
     logging.info("SQL: %s" % sql)
 
 
-async def create_pool(loop, **kw):
+async def create_pool(loop=None, **kw):
     logging.info("create database connection pool...")
     global __pool
     __pool = await aiomysql.create_pool(
@@ -47,7 +47,7 @@ async def select(sql, args, size=None):
 
 async def execute(sql, args, autocommit=True):
     log(sql)
-    async with __pool.get() as conn:
+    async with __pool.acquire() as conn:
         if not autocommit:
             await conn.begin()
         try:
