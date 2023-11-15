@@ -14,6 +14,5 @@ async def test():
 
 
 loop = asyncio.get_event_loop()
-r = loop.run_until_complete(test())
-print(r)
+loop.run_until_complete(test())
 loop.close()
